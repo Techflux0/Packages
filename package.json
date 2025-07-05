@@ -20,7 +20,7 @@
     "productName": "Windows Starter Setup",
     "win": {
       "target": "nsis",
-      "icon": "build/icon.ico"
+      "icon": "build/icon.png"
     }
   }
 }
