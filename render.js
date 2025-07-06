@@ -5,13 +5,13 @@ const { ipcRenderer } = require('electron');
 const apps = {
     browsers: [
         { id: 'Mozilla.Firefox', name: 'Firefox' },
-        { id: 'Google.Chrome', name: 'Chrome' },
+        { id: 'Google.Chrome.EXE', name: 'Chrome' },
         { id: 'Microsoft.Edge', name: 'Edge' },
         { id: 'Brave.Brave', name: 'Brave' },
         { id: 'Opera.Opera', name: 'Opera' },
         { id: 'Vivaldi.Vivaldi', name: 'Vivaldi' },
         { id: 'TorProject.TorBrowser', name: 'Tor Browser' },
-        { id: 'Epic.EpicBrowser', name: 'Epic Browser' },
+        { id: 'Huawei.HuaweiBrowser', name: 'Huawei Browser' },
         { id: 'DuckDuckGo.DuckDuckGo', name: 'DuckDuckGo Browser' },
         { id: 'Yandex.Browser', name: 'Yandex Browser' }
     ],
@@ -35,7 +35,10 @@ const apps = {
         { id: 'Microsoft.PowerShell', name: 'PowerShell' },
         { id: 'GitHub.GitHubDesktop', name: 'GitHub Desktop' },
         { id: 'javaOracle.JavaRuntimeEnvironment', name: 'Java Development Kit (JDK)' },
-        { id: 'ApacheFriends.Xampp.8.2', name: 'XAMPP' }
+        { id: 'ApacheFriends.Xampp.8.2', name: 'XAMPP' },
+        { id: 'SublimeHQ.SublimeText.4', name: 'Sublime Text' },
+        { id: 'Notepad++.Notepad++', name: 'Notepad++' },
+        { id: 'Microsoft.WindowsTerminal', name: 'Windows Terminal' },
     ],
     media: [
         { id: 'VideoLAN.VLC', name: 'VLC Media Player' },

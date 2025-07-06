@@ -445,7 +445,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="title">App Installer</div>
+            <div class="title" style="position:fixed; top:0; width:100vw; background:#d2d2d7; text-align:center; z-index:100;  font-size:24px; font-weight:600;">
+                Apps Installer V1.0.1
+            </div>
         </div>
 
         <!-- Browsers -->
@@ -462,8 +464,8 @@
                 </div>
                 <div class="app-item">
                     <img src="assets/icons/chrome.png" class="app-icon" alt="Chrome">
-                    <input type="checkbox" id="Google.Chrome" class="app-checkbox">
-                    <label for="Google.Chrome" class="app-label">Chrome</label>
+                    <input type="checkbox" id="Google.Chrome.EXE" class="app-checkbox">
+                    <label for="Google.Chrome.EXE" class="app-label">Chrome</label>
                 </div>
                 <div class="app-item">
                     <img src="assets/icons/microsoft.png" class="app-icon" alt="Edge">
@@ -500,6 +502,11 @@
                     <img src="assets/icons/yandex.png" class="app-icon" alt="Yandex Browser">
                     <input type="checkbox" id="Yandex.Browser" class="app-checkbox">
                     <label for="Yandex.Browser" class="app-label">Yandex Browser</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/icons/huawei.png" class="app-icon" alt="Huawei Browser">
+                    <input type="checkbox" id="Huawei.HuaweiBrowser" class="app-checkbox">
+                    <label for="Huawei.HuaweiBrowser" class="app-label">Huawei Browser</label>
                 </div>
             </div>
         </div>
@@ -572,6 +579,11 @@
                     <label for="Git.Git" class="app-label">Git</label>
                 </div>
                 <div class="app-item">
+                    <img src="assets/devtools/terminal.png" class="app-icon" alt="Windows Terminal">
+                    <input type="checkbox" id="Microsoft.WindowsTerminal" class="app-checkbox">
+                    <label for="Microsoft.WindowsTerminal" class="app-label">Windows Terminal</label>
+                </div>
+                <div class="app-item">
                     <img src="assets/devtools/docker.png" class="app-icon" alt="Docker Desktop">
                     <input type="checkbox" id="Docker.DockerDesktop" class="app-checkbox">
                     <label for="Docker.DockerDesktop" class="app-label">Docker Desktop</label>  
@@ -605,6 +617,18 @@
                     <img src="assets/devtools/java.png" class="app-icon" alt="Java Runtime Environment">
                     <input type="checkbox" id="javaOracle.JavaRuntimeEnvironment" class="app-checkbox">
                     <label for="javaOracle.JavaRuntimeEnvironment" class="app-label">Java Runtime</label>
+                </div>
+                <!-- SublimeHQ.SublimeText.4 -->
+                <div class="app-item">
+                    <img src="assets/devtools/sublime.png" class="app-icon" alt="Sublime Text">
+                    <input type="checkbox" id="SublimeHQ.SublimeText.4" class="app-checkbox">
+                    <label for="SublimeHQ.SublimeText.4" class="app-label">Sublime Text</label>
+                </div>
+                <!-- notepad++ -->
+                <div class="app-item">
+                    <img src="assets/devtools/np++.png" class="app-icon" alt="Notepad++">
+                    <input type="checkbox" id="Notepad++.Notepad++" class="app-checkbox">
+                    <label for="Notepad++.Notepad++" class="app-label">Notepad++</label>
                 </div>
                 <!-- xammp      -->
                 <div class="app-item">
@@ -821,8 +845,13 @@
         
 
        <div class="footer">
-  <button class="btn btn-secondary">Exit</button>
-  <button class="btn btn-primary">Install Selected</button>
+  <button class="btn btn-secondary">
+    <img src="assets/others/close.png" alt="Exit" style="height:16px;margin-right:8px;">
+    Exit</button>
+  <button class="btn btn-primary">
+    <img src="assets/others/install.png" alt="Install" style="height:16px;margin-right:8px;">
+    Install Selected
+  </button>
   <button class="btn btn-secondary" id="progress">
     <img src="assets/others/progress.png" alt="Progress" style="height:16px;margin-right:8px;">
     Progress
