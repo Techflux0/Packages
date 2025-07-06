@@ -16,9 +16,11 @@ const apps = {
         { id: 'Yandex.Browser', name: 'Yandex Browser' }
     ],
     dev: [
+        { id: 'GitHub.Atom', name: 'Atom' },
+        { id: 'Anaconda.Anaconda3', name: 'Anaconda' },
         { id: 'Microsoft.VisualStudioCode', name: 'VS Code' },
         { id: 'OpenJS.NodeJS', name: 'Node.js' },
-        { id: 'Python.Python', name: 'Python' },
+        { id: '9PNRBTZXMB4Z', name: 'Python' },
         { id: 'Microsoft.VisualStudio', name: 'Visual Studio' },
         { id: 'Google.AndroidStudio', name: 'Android Studio' },
         { id: 'JetBrains.PyCharm', name: 'PyCharm' },
@@ -28,8 +30,8 @@ const apps = {
         { id: 'Git.Git', name: 'Git' },
         { id: 'Docker.DockerDesktop', name: 'Docker Desktop' },
         { id: 'Postman.Postman', name: 'Postman' },
-        { id: 'MongoDB.MongoDBCompass', name: 'MongoDB Compass' },
-        { id: 'MySQL.MySQLWorkbench', name: 'MySQL Workbench' },
+        { id: 'MongoDB.Compass.Full', name: 'MongoDB Compass' },
+        { id: 'Oracle.MySQLWorkbench', name: 'MySQL Workbench' },
         { id: 'Microsoft.PowerShell', name: 'PowerShell' },
         { id: 'GitHub.GitHubDesktop', name: 'GitHub Desktop' },
         { id: 'javaOracle.JavaRuntimeEnvironment', name: 'Java Development Kit (JDK)' },
@@ -38,43 +40,45 @@ const apps = {
     media: [
         { id: 'VideoLAN.VLC', name: 'VLC Media Player' },
         { id: 'Spotify.Spotify', name: 'Spotify' },
+        { id: 'Shabinder.SpotiFlyer', name: 'SpotiFlyer' },
         { id: 'Apple.iTunes', name: 'iTunes' },
         { id: 'OBSProject.OBSStudio', name: 'OBS Studio' },
         { id: 'Shotcut.Shotcut', name: 'Shotcut' },
-        { id: 'GIMP.GIMP', name: 'GIMP' },
+        { id: 'GIMP.GIMP.3', name: 'GIMP' },
         { id: 'Inkscape.Inkscape', name: 'Inkscape' },
-        { id: 'Blender.Blender', name: 'Blender' },
-        { id: 'Adobe.Photoshop', name: 'Adobe Photoshop' },
+        { id: 'BlenderFoundation.Blender', name: 'Blender' },
+        { id: 'XPFD4T9N395QN6', name: 'Adobe Photoshop' },
         { id: 'zoom.Zoom', name: 'Zoom' },
     ],
     Messengers: [
-        { id: 'WhatsApp.WhatsApp', name: 'WhatsApp' },
-        { id: 'WhatsApp.WhatsApp.Beta', name: 'WhatsApp Beta' },
-        { id: 'Instagram.Instagram', name: 'Instagram' },
+        { id: '9NKSQGP7F2NH', name: 'WhatsApp' },
+        { id: '9NBDXK71NK08', name: 'WhatsApp Beta' },
+        { id: '9NBLGGH5L9XT', name: 'Instagram' },
         { id: 'Telegram.TelegramDesktop', name: 'Telegram' },
+        { id: 'Telegram.Unigram', name: 'Unigram' },
+        { id: '9WZDNCRFJ140', name: 'Twitter' },
+        { id: '9WZDNCRFJ2WL', name: 'Facebook' },
+        { id: '9NH2GPH4JZS4', name: 'TikTok' },
         { id: 'Discord.Discord', name: 'Discord' },
         { id: 'SlackTechnologies.Slack', name: 'Slack' },
-        { id: 'Microsoft.Teams', name: 'Microsoft Teams' },
-        { id: 'Skype.Skype', name: 'Skype' }
+        { id: 'Microsoft.Teams.Free', name: 'Microsoft Teams' },
+        { id: 'Microsoft.Skype', name: 'Skype' }
     ],
 
     Disk: [
         { id: 'WinDirStat.WinDirStat', name: 'WinDirStat'},
         { id: 'Rufus.Rufus', name: 'Rufus' },
-        { id: 'CrystalDiskInfo.CrystalDiskInfo', name: 'CrystalDiskInfo' },
+        { id: 'CrystalDewWorld.CrystalDiskInfo', name: 'CrystalDiskInfo' },
         { id: 'Balena.Etcher', name: 'Balena Etcher' }
     ],
 
     files: [
         { id: '7zip.7zip', name: '7-Zip' },
-        { id: 'WinRAR.WinRAR', name: 'WinRAR' },
-        { id: 'PeaZip.Peazip', name: 'PeaZip' },
-        { id: 'Bandizip.Bandizip', name: 'Bandizip' },
-        { id: 'WinZip.WinZip', name: 'WinZip' },
-        { id: 'FreeCommander.FreeCommander', name: 'FreeCommander' },
-        { id: 'TotalCommander.TotalCommander', name: 'Total Commander' },
-        { id: 'derceg.Explorer++', name: 'Explorer++' },
-        { id: 'WinZip.WinZip', name: 'WinZip' }
+        { id: 'RARLab.WinRAR', name: 'WinRAR' },
+        { id: 'Giorgiotani.Peazip', name: 'PeaZip' },
+        { id: 'Bandisoft.Bandizip', name: 'Bandizip' },
+        { id: 'Corel.WinZip', name: 'WinZip' },
+        { id: 'derceg.Explorer++', name: 'Explorer++' }
     ]
 };
 
