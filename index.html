@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>App Installer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
         <style>
         :root {
             --bg-color: #f5f5f7;
@@ -173,7 +174,7 @@
             border: 1px solid var(--primary-color);
         }
 
-        .btn-secondary:hover {
+        .btn-secondary1:hover {
             background-color: rgba(0, 113, 227, 0.1);
         }
 
@@ -206,8 +207,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #a8a8a8;
         }
-
-        /* Modal Styles */
+        /* Modern Modal Styles */
 .modal {
   display: none;
   position: fixed;
@@ -216,47 +216,212 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-content {
-  background-color: var(--card-color);
-  margin: 5% auto;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 800px;
-  max-height: 80vh;
+  background-color: #ffffff;
+  margin: 2% auto;
+  padding: 25px;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 750px;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { 
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #2c3e50;
+  font-weight: 600;
 }
 
 .modal-body {
   flex: 1;
   overflow-y: auto;
+  padding: 5px;
 }
 
 .close-modal {
-  font-size: 28px;
+  font-size: 1.5rem;
   font-weight: bold;
+  color: #7f8c8d;
   cursor: pointer;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  padding: 5px;
 }
 
+.close-modal:hover {
+  color: #e74c3c;
+}
+
+/* Enhanced Progress Bar */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #3498db, #2ecc71);
+  border-radius: 10px;
+  width: 0%;
+  transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  position: relative;
+}
+
+.progress-bar::after {
+  content: attr(data-progress);
+  position: absolute;
+  right: 10px;
+  top: -25px;
+  font-size: 0.85rem;
+  color: #3498db;
+  font-weight: 600;
+}
+
+/* Modern Log Entries */
 #progressLog {
-  font-family: monospace;
+  font-family: 'SF Mono', 'Roboto Mono', monospace;
   white-space: pre-wrap;
-  background-color: #f8f8f8;
-  padding: 10px;
-  border-radius: 4px;
-  max-height: 60vh;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  max-height: 55vh;
   overflow-y: auto;
+  border: 1px solid #eee;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.log-entry {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.log-entry:hover {
+  transform: translateX(3px);
+}
+
+.state-icon {
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.log-entry.waiting {
+  background-color: rgba(255, 193, 7, 0.1);
+  border-left: 4px solid #ffc107;
+  color: #ff9800;
+}
+
+.log-entry.installing {
+  background-color: rgba(33, 150, 243, 0.1);
+  border-left: 4px solid #2196f3;
+  color: #1976d2;
+}
+
+.log-entry.finished {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-left: 4px solid #4caf50;
+  color: #388e3c;
+}
+
+.log-entry.skipped {
+  background-color: rgba(158, 158, 158, 0.1);
+  border-left: 4px solid #9e9e9e;
+  color: #616161;
+}
+
+.log-entry.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-left: 4px solid #f44336;
+  color: #d32f2f;
+}
+
+/* Clear Log Button */
+#clearLogBtn {
+  margin-left: 15px;
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 6px;
+  color: #555;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#clearLogBtn:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+#clearLogBtn::before {
+  content: "🗑️";
+}
+
+/* Custom Scrollbar */
+#progressLog::-webkit-scrollbar {
+  width: 8px;
+}
+
+#progressLog::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#progressLog::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+#progressLog::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
     </style>
 </head>
@@ -265,13 +430,18 @@
   <div class="modal-content">
     <div class="modal-header">
       <h3>Installation Progress</h3>
+      <button class="btn btn-secondary1" id="clearLogBtn">Clear Logs</button>
       <span class="close-modal">&times;</span>
+    </div>
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar"></div>
     </div>
     <div class="modal-body">
       <pre id="progressLog"></pre>
     </div>
   </div>
 </div>
+
 <body>
     <div class="container">
         <div class="header">
@@ -543,13 +713,13 @@
                 </div>
                 <div class="app-item">
                     <img src="assets/social/twitter.png" class="app-icon" alt="Twitter">
-                    <input type="checkbox" id="Twitter.Twitter" class="app-checkbox">
-                    <label for="Twitter.Twitter" class="app-label">Twitter</label>
+                    <input type="checkbox" id="9WZDNCRFJ140" class="app-checkbox">
+                    <label for="9WZDNCRFJ140" class="app-label">Twitter</label>
                 </div>
                 <div class="app-item">
                     <img src="assets/social/facebook.png" class="app-icon" alt="Facebook">
-                    <input type="checkbox" id="Facebook.Facebook" class="app-checkbox">
-                    <label for="Facebook.Facebook" class="app-label">Facebook</label>
+                    <input type="checkbox" id="9WZDNCRFJ2WL" class="app-checkbox">
+                    <label for="9WZDNCRFJ2WL" class="app-label">Facebook</label>
                 </div>
                 <div class="app-item">
                     <img src="assets/social/tiktok.png" class="app-icon" alt="TikTok">

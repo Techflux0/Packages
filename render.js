@@ -83,15 +83,54 @@ const apps = {
 };
 
 
+// Installation states
+const INSTALL_STATES = {
+  WAITING: 'waiting',
+  INSTALLING: 'installing',
+  FINISHED: 'finished',
+  SKIPPED: 'skipped',
+  ERROR: 'error'
+};
+
+let installationProgress = {};
+let totalAppsToInstall = 0;
+let installedCount = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded');
-    
-    document.querySelector('.btn-secondary').addEventListener('click', exitApp);
+    const progressBtn = document.getElementById('progress');
+    const progressModal = document.getElementById('progressModal');
+    const progressLog = document.getElementById('progressLog');
+    const closeModal = document.querySelector('.close-modal');
+    const clearLogBtn = document.createElement('button');
     
 
+    clearLogBtn.textContent = 'Clear Log';
+    clearLogBtn.className = 'btn btn-secondary1';
+    clearLogBtn.style.marginLeft = '10px';
+    clearLogBtn.addEventListener('click', () => {
+        progressLog.innerHTML = '';
+    });
+    
+    const modalHeader = document.querySelector('.modal-header');
+    modalHeader.appendChild(clearLogBtn);
+
+    progressBtn.addEventListener('click', () => {
+        progressModal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', () => {
+        progressModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === progressModal) {
+            progressModal.style.display = 'none';
+        }
+    });
+
+    document.querySelector('.btn-secondary').addEventListener('click', exitApp);
     document.querySelector('.btn-primary').addEventListener('click', installSelected);
     
-
     document.querySelectorAll('.select-all').forEach(button => {
         button.addEventListener('click', function() {
             const category = this.getAttribute('data-category');
@@ -100,7 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Toggle select all for a category
+// Check if app is already installed
+function isAppInstalled(appId, callback) {
+    exec(`winget list --id ${appId}`, (error, stdout) => {
+        callback(!error && stdout.includes(appId));
+    });
+}
+
 function toggleSelectAll(category) {
     const container = document.getElementById(`${category}-apps`);
     const checkboxes = container.querySelectorAll('.app-checkbox');
@@ -111,38 +156,43 @@ function toggleSelectAll(category) {
     });
 }
 
-const progressBtn = document.getElementById('progress');
-const progressModal = document.getElementById('progressModal');
-const progressLog = document.getElementById('progressLog');
-const closeModal = document.querySelector('.close-modal');
-
-
-progressBtn.addEventListener('click', () => {
-  progressModal.style.display = 'block';
-});
-
-closeModal.addEventListener('click', () => {
-  progressModal.style.display = 'none';
-});
-
-
-window.addEventListener('click', (event) => {
-  if (event.target === progressModal) {
-    progressModal.style.display = 'none';
-  }
-});
-
-
-function updateProgressLog(message) {
-  const logEntry = document.createElement('div');
-  logEntry.textContent = message;
-  progressLog.appendChild(logEntry);
-  progressLog.scrollTop = progressLog.scrollHeight;
-  
- 
-  if (message.includes('Error')) {
-    progressModal.style.display = 'block';
-  }
+function updateProgressLog(message, state = null) {
+    const logEntry = document.createElement('div');
+    logEntry.textContent = message;
+    
+    if (state) {
+        logEntry.className = `log-entry ${state}`;
+        
+        const icon = document.createElement('span');
+        icon.className = 'state-icon';
+        
+        switch(state) {
+            case INSTALL_STATES.WAITING:
+                icon.textContent = '⏳';
+                break;
+            case INSTALL_STATES.INSTALLING:
+                icon.textContent = '🔵';
+                break;
+            case INSTALL_STATES.FINISHED:
+                icon.textContent = '✅';
+                break;
+            case INSTALL_STATES.SKIPPED:
+                icon.textContent = '⏭️';
+                break;
+            case INSTALL_STATES.ERROR:
+                icon.textContent = '❌';
+                break;
+        }
+        
+        logEntry.insertBefore(icon, logEntry.firstChild);
+    }
+    
+    progressLog.appendChild(logEntry);
+    progressLog.scrollTop = progressLog.scrollHeight;
+    
+    if (state === INSTALL_STATES.ERROR) {
+        document.getElementById('progressModal').style.display = 'block';
+    }
 }
 
 function installSelected() {
@@ -153,42 +203,80 @@ function installSelected() {
     }
     
     const appIds = Array.from(checkboxes).map(checkbox => checkbox.id);
+    totalAppsToInstall = appIds.length;
+    installedCount = 0;
+    installationProgress = {};
+    
+    updateProgressLog(`Starting installation of ${totalAppsToInstall} apps...`);
     installApps(appIds);
 }
 
 function installApps(appIds) {
-  updateProgressLog('Starting installations...');
-  
-  let currentIndex = 0;
-  
-  function installNext() {
-    if (currentIndex >= appIds.length) {
-      updateProgressLog('All installations completed!');
-      return;
-    }
+    let currentIndex = 0;
     
-    const appId = appIds[currentIndex];
-    const appName = findAppName(appId);
-    
-    updateProgressLog(`Installing ${appName}... (${currentIndex + 1}/${appIds.length})`);
-    
-    exec(`winget install -e --id ${appId} --accept-package-agreements --accept-source-agreements`, 
-      (error, stdout, stderr) => {
-        if (error) {
-          updateProgressLog(`ERROR installing ${appName}: ${error.message}`);
-        } else {
-          updateProgressLog(`Successfully installed ${appName}`);
+    function processNextApp() {
+        if (currentIndex >= appIds.length) {
+            updateProgressLog('All installations completed!', INSTALL_STATES.FINISHED);
+            updateStatus('All installations completed!');
+            return;
         }
         
-        currentIndex++;
-        installNext();
-      });
-  }
-  
-  installNext();
+        const appId = appIds[currentIndex];
+        const appName = findAppName(appId);
+        
+        installationProgress[appId] = {
+            name: appName,
+            state: INSTALL_STATES.WAITING
+        };
+        
+        updateProgressLog(`${appName}: Checking if already installed...`, INSTALL_STATES.WAITING);
+        
+        isAppInstalled(appId, (isInstalled) => {
+            if (isInstalled) {
+                installationProgress[appId].state = INSTALL_STATES.SKIPPED;
+                updateProgressLog(`${appName}: Already installed - skipping`, INSTALL_STATES.SKIPPED);
+                installedCount++;
+                currentIndex++;
+                updateProgressBar();
+                processNextApp();
+            } else {
+                installationProgress[appId].state = INSTALL_STATES.INSTALLING;
+                updateProgressLog(`${appName}: Installing...`, INSTALL_STATES.INSTALLING);
+                
+                exec(`winget install -e --id ${appId} --accept-package-agreements --accept-source-agreements --silent`, 
+                    (error, stdout, stderr) => {
+                        if (error) {
+                            installationProgress[appId].state = INSTALL_STATES.ERROR;
+                            updateProgressLog(`ERROR installing ${appName}: ${error.message}`, INSTALL_STATES.ERROR);
+                        } else {
+                            installationProgress[appId].state = INSTALL_STATES.FINISHED;
+                            updateProgressLog(`${appName}: Successfully installed`, INSTALL_STATES.FINISHED);
+                        }
+                        
+                        installedCount++;
+                        currentIndex++;
+                        updateProgressBar();
+                        processNextApp();
+                    });
+            }
+        });
+    }
+    
+    processNextApp();
 }
 
-// Find app name by ID
+function updateProgressBar() {
+    const progressPercent = Math.round((installedCount / totalAppsToInstall) * 100);
+    const progressBar = document.getElementById('progressBar');
+    
+    if (progressBar) {
+        progressBar.style.width = `${progressPercent}%`;
+        progressBar.textContent = `${progressPercent}%`;
+    }
+    
+    updateStatus(`Progress: ${installedCount} of ${totalAppsToInstall} apps completed`);
+}
+
 function findAppName(appId) {
     for (const category in apps) {
         const found = apps[category].find(app => app.id === appId);
@@ -197,14 +285,12 @@ function findAppName(appId) {
     return appId;
 }
 
-// Update status message
 function updateStatus(message, isError = false) {
     const statusElement = document.getElementById('status');
     statusElement.textContent = message;
     statusElement.style.color = isError ? '#ff3b30' : '#86868b';
 }
 
-// Exit the application
 function exitApp() {
     ipcRenderer.send('exit-app');
 }
