@@ -1,5 +1,4 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
-const path = require('path')
 
 let mainWindow
 
@@ -7,6 +6,8 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
+        maximizable: false,
+        fullscreenable: false,
         titleBarStyle: 'hiddenInset',
         webPreferences: {
             nodeIntegration: true,
@@ -15,9 +16,8 @@ function createWindow() {
     })
 
     mainWindow.loadFile('index.html')
-    // mainWindow.webContents.openDevTools() 
-
     Menu.setApplicationMenu(null)
+    mainWindow.setMenu(null)
 }
 
 ipcMain.on('exit-app', () => {
@@ -27,5 +27,5 @@ ipcMain.on('exit-app', () => {
 app.whenReady().then(createWindow)
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit()
+    app.quit()
 })

@@ -171,19 +171,19 @@ function updateProgressLog(message, state = null) {
         
         switch(state) {
             case INSTALL_STATES.WAITING:
-                icon.textContent = '⏳';
+                icon.textContent = '';
                 break;
             case INSTALL_STATES.INSTALLING:
-                icon.textContent = '🔵';
+                icon.textContent = '';
                 break;
             case INSTALL_STATES.FINISHED:
-                icon.textContent = '✅';
+                icon.textContent = '';
                 break;
             case INSTALL_STATES.SKIPPED:
-                icon.textContent = '⏭️';
+                icon.textContent = '';
                 break;
             case INSTALL_STATES.ERROR:
-                icon.textContent = '❌';
+                icon.textContent = '';
                 break;
         }
         
@@ -232,7 +232,7 @@ function installApps(appIds) {
             state: INSTALL_STATES.WAITING
         };
         
-        updateProgressLog(`${appName}: Checking if already installed...`, INSTALL_STATES.WAITING);
+        updateProgressLog(`${appName}: Checking installation status...`, INSTALL_STATES.WAITING);
         
         isAppInstalled(appId, (isInstalled) => {
             if (isInstalled) {
