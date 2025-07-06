@@ -292,6 +292,11 @@
 .log-entry.finished { color: #6a9955; }   /* Green */
 .log-entry.skipped { color: #858585; }    /* Gray */
 .log-entry.error { color: #f48771; }      /* Red */
+
+.style{
+    background-color:#0071e3;
+    color: white;
+}
     </style>
 </head>
 <!-- Progress Modal -->
@@ -315,7 +320,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="title" style="position:fixed; top:0; width:100vw; background:#d2d2d7; text-align:center; z-index:100;  font-size:24px; font-weight:600;">
+            <div class="title" style="position:fixed; top:0; width:100vw; background:#f5f5f7; text-align:center; z-index:100;  font-size:24px; font-weight:600;">
                 Apps Installer V1.0.1
             </div>
         </div>
@@ -394,57 +399,72 @@
                     <label for="GitHub.Atom" class="app-label">Atom</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/anaconda.png" class="app-icon" alt="Anaconda">
+                    <img src="assets/devtools/anaconda.svg" class="app-icon" alt="Anaconda">
                     <input type="checkbox" id="Anaconda.Anaconda3" class="app-checkbox">
                     <label for="Anaconda.Anaconda3" class="app-label">Anaconda</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/code.png" class="app-icon" alt="VS Code">
+                    <img src="assets/devtools/code.svg" class="app-icon" alt="VS Code">
                     <input type="checkbox" id="Microsoft.VisualStudioCode" class="app-checkbox">
                     <label for="Microsoft.VisualStudioCode" class="app-label">VS Code</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/nodejs.png" class="app-icon" alt="Node.js">
+                    <img src="assets/devtools/nodejs.svg" class="app-icon" alt="Node.js">
                     <input type="checkbox" id="OpenJS.NodeJS" class="app-checkbox">
                     <label for="OpenJS.NodeJS" class="app-label">Node.js</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/python.png" class="app-icon" alt="Python">
+                    <img src="assets/devtools/python.svg" class="app-icon" alt="Python">
                     <input type="checkbox" id="9PNRBTZXMB4Z" class="app-checkbox">
                     <label for="9PNRBTZXMB4Z" class="app-label">Python</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/vs.png" class="app-icon" alt="Rust">
+                    <img src="assets/devtools/vs.svg" class="app-icon" alt="Rust">
                     <input type="checkbox" id="Microsoft.VisualStudio" class="app-checkbox">
                     <label for="Microsoft.VisualStudio" class="app-label">Visual Studio</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/androidstudio.png" class="app-icon" alt="Android Studio">
+                    <img src="assets/devtools/androidstudio.svg" class="app-icon" alt="Android Studio">
                     <input type="checkbox" id="Google.AndroidStudio" class="app-checkbox">
                     <label for="Google.AndroidStudio" class="app-label">Android Studio</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/IntelliJIDEA.png" class="app-icon" alt="IntelliJ IDEA">
+                    <img src="assets/devtools/IntelliJIDEA.svg" class="app-icon" alt="IntelliJ IDEA">
                     <input type="checkbox" id="JetBrains.IntelliJIDEA.Community" class="app-checkbox">
                     <label for="JetBrains.IntelliJIDEA.Community" class="app-label">IntelliJ IDEA</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/pycharm.png" class="app-icon" alt="PyCharm">
+                    <img src="assets/devtools/pycharm.svg" class="app-icon" alt="PyCharm">
                     <input type="checkbox" id="JetBrains.PyCharm" class="app-checkbox">
                     <label for="JetBrains.PyCharm" class="app-label">PyCharm</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/webstorm.png" class="app-icon" alt="WebStorm">
+                    <img src="assets/devtools/clion.svg" class="app-icon" alt="CLion">
+                    <input type="checkbox" id="JetBrains.CLion" class="app-checkbox">
+                    <label for="JetBrains.CLion" class="app-label">CLion</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/devtools/webstorm.svg" class="app-icon" alt="WebStorm">
                     <input type="checkbox" id="JetBrains.WebStorm" class="app-checkbox">
                     <label for="JetBrains.WebStorm" class="app-label">WebStorm</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/Rider.png" class="app-icon" alt="Rider">
+                    <img src="assets/devtools/Rider.svg" class="app-icon" alt="Rider">
                     <input type="checkbox" id="JetBrains.Rider" class="app-checkbox">
                     <label for="JetBrains.Rider" class="app-label">Rider</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/git.png" class="app-icon" alt="Git">
+                    <img src="assets/devtools/ruby.svg" class="app-icon" alt="RubyMine">
+                    <input type="checkbox" id="JetBrains.RubyMine" class="app-checkbox">
+                    <label for="JetBrains.RubyMine" class="app-label">RubyMine</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/devtools/rubies.svg" class="app-icon" alt="Ruby">
+                    <input type="checkbox" id="RubyInstallerTeam.Ruby.3.1" class="app-checkbox">
+                    <label for="RubyInstallerTeam.Ruby.3.1" class="app-label">RubyMine</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/devtools/git.svg" class="app-icon" alt="Git">
                     <input type="checkbox" id="Git.Git" class="app-checkbox">
                     <label for="Git.Git" class="app-label">Git</label>
                 </div>
@@ -454,37 +474,37 @@
                     <label for="Microsoft.WindowsTerminal" class="app-label">Windows Terminal</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/docker.png" class="app-icon" alt="Docker Desktop">
+                    <img src="assets/devtools/docker.svg" class="app-icon" alt="Docker Desktop">
                     <input type="checkbox" id="Docker.DockerDesktop" class="app-checkbox">
                     <label for="Docker.DockerDesktop" class="app-label">Docker Desktop</label>  
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/postman.png" class="app-icon" alt="Postman">
+                    <img src="assets/devtools/postman.svg" class="app-icon" alt="Postman">
                     <input type="checkbox" id="Postman.Postman" class="app-checkbox">
                     <label for="Postman.Postman" class="app-label">Postman</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/mongodb.png" class="app-icon" alt="MongoDB Compass">
+                    <img src="assets/devtools/mongo.svg" class="app-icon" alt="MongoDB Compass">
                     <input type="checkbox" id="MongoDB.Compass.Full" class="app-checkbox">
                     <label for="MongoDB.Compass.Full" class="app-label">MongoDB Compass</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/mysql.png" class="app-icon" alt="MySQL Workbench">
+                    <img src="assets/devtools/mysql.svg" class="app-icon" alt="MySQL Workbench">
                     <input type="checkbox" id="Oracle.MySQLWorkbench" class="app-checkbox">
                     <label for="Oracle.MySQLWorkbench" class="app-label">MySQL Workbench</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/powershell.png" class="app-icon" alt="PowerShell">
+                    <img src="assets/devtools/powershell.svg" class="app-icon" alt="PowerShell">
                     <input type="checkbox" id="Microsoft.PowerShell" class="app-checkbox">
                     <label for="Microsoft.PowerShell" class="app-label">PowerShell</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/github.png" class="app-icon" alt="GitHub Desktop">
+                    <img src="assets/devtools/github.svg" class="app-icon" alt="GitHub Desktop">
                     <input type="checkbox" id="GitHub.GitHubDesktop" class="app-checkbox">
                     <label for="GitHub.GitHubDesktop" class="app-label">GitHub Desktop</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/devtools/java.png" class="app-icon" alt="Java Runtime Environment">
+                    <img src="assets/devtools/java.svg" class="app-icon" alt="Java Runtime Environment">
                     <input type="checkbox" id="javaOracle.JavaRuntimeEnvironment" class="app-checkbox">
                     <label for="javaOracle.JavaRuntimeEnvironment" class="app-label">Java Runtime</label>
                 </div>
@@ -547,7 +567,7 @@
                     <label for="Shotcut.Shotcut" class="app-label">Shotcut</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/media/gimp.png" class="app-icon" alt="GIMP">
+                    <img src="assets/media/gimp.svg" class="app-icon" alt="GIMP">
                     <input type="checkbox" id="GIMP.GIMP.3" class="app-checkbox">
                     <label for="GIMP.GIMP.3" class="app-label">GIMP</label>
                 </div>
@@ -557,7 +577,7 @@
                     <label for="Inkscape.Inkscape" class="app-label">Inkscape</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/media/blender.png" class="app-icon" alt="Blender">
+                    <img src="assets/media/blender.svg" class="app-icon" alt="Blender">
                     <input type="checkbox" id="BlenderFoundation.Blender" class="app-checkbox">
                     <label for="BlenderFoundation.Blender" class="app-label">Blender</label>
                 </div>
@@ -595,6 +615,12 @@
                     <input type="checkbox" id="9NBLGGH5L9XT" class="app-checkbox">
                     <label for="9NBLGGH5L9XT" class="app-label">Instagram</label>
                 </div>
+                <!-- threads -->
+                <div class="app-item">
+                    <img src="assets/svgs/threads.svg" class="app-icon" alt="Threads">
+                    <input type="checkbox" id="9MXBP1FB84CQ" class="app-checkbox">
+                    <label for="9MXBP1FB84CQ" class="app-label">Threads</label>
+                </div>
                 <div class="app-item">
                     <img src="assets/social/telegram.png" class="app-icon" alt="Telegram">
                     <input type="checkbox" id="Telegram.TelegramDesktop" class="app-checkbox">
@@ -611,7 +637,7 @@
                     <label for="9WZDNCRFJ140" class="app-label">Twitter</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/social/facebook.png" class="app-icon" alt="Facebook">
+                    <img src="assets/social/facebook.svg" class="app-icon" alt="Facebook">
                     <input type="checkbox" id="9WZDNCRFJ2WL" class="app-checkbox">
                     <label for="9WZDNCRFJ2WL" class="app-label">Facebook</label>
                 </div>
@@ -626,7 +652,7 @@
                     <label for="Discord.Discord" class="app-label">Discord</label>
                 </div>
                 <div class="app-item">
-                    <img src="assets/social/slack.png" class="app-icon" alt="Slack">
+                    <img src="assets/social/slack.svg" class="app-icon" alt="Slack">
                     <input type="checkbox" id="SlackTechnologies.Slack" class="app-checkbox">
                     <label for="SlackTechnologies.Slack" class="app-label">Slack</label>
                 </div>
@@ -712,21 +738,90 @@
                 </div>
             </div>
         </div>
-        
 
-       <div class="footer">
-  <button class="btn btn-secondary">
-    <img src="assets/others/close.png" alt="Exit" style="height:16px;margin-right:8px;">
-    Exit</button>
-  <button class="btn btn-primary">
-    <img src="assets/others/install.png" alt="Install" style="height:16px;margin-right:8px;">
-    Install Selected
-  </button>
-  <button class="btn btn-secondary" id="progress">
-    <img src="assets/others/progress.png" alt="Progress" style="height:16px;margin-right:8px;">
-    Progress
-  </button>
-</div>
+        <!-- vpns -->
+        <div class="card">
+            <div class="card-header">
+                <div class="category-title">VPNs</div>
+                <div class="select-all" data-category="vpns">Select All</div>
+            </div>
+            <div class="app-list" id="vpns-apps">
+                <div class="app-item">
+                    <img src="assets/vpns/express.svg" class="app-icon" alt="ExpressVPN">
+                    <input type="checkbox" id="ExpressVPN.ExpressVPN" class="app-checkbox">
+                    <label for="ExpressVPN.ExpressVPN" class="app-label">ExpressVPN</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/vpns/proton.svg" class="app-icon" alt="ProtonVPN">
+                    <input type="checkbox" id="ProtonVPN.ProtonVPN" class="app-checkbox">
+                    <label for="ProtonVPN.ProtonVPN" class="app-label">ProtonVPN</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/vpns/nordvpn.svg" class="app-icon" alt="NordVPN">
+                    <input type="checkbox" id="NordSecurity.NordVPN" class="app-checkbox">
+                    <label for="NordSecurity.NordVPN" class="app-label">NordVPN</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/vpns/surf.svg" class="app-icon" alt="Surfshark">
+                    <input type="checkbox" id="Surfshark.Surfshark" class="app-checkbox">
+                    <label for="Surfshark.Surfshark" class="app-label">Surfshark</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/vpns/cyber.png" class="app-icon" alt="CyberGhost">
+                    <input type="checkbox" id="CyberGhost.CyberGhost" class="app-checkbox">
+                    <label for="CyberGhost.CyberGhost" class="app-label">CyberGhost</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/vpns/radmin.png" class="app-icon" alt="Famatech Radmin VPN">
+                    <input type="checkbox" id="Famatech.RadminVPN" class="app-checkbox">
+                    <label for="Famatech.RadminVPN" class="app-label">Famatech Radmin VPN</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/vpns/wind.png" class="app-icon" alt="Windscribe">
+                    <input type="checkbox" id="Windscribe.Windscribe" class="app-checkbox">
+                    <label for="Windscribe.Windscribe" class="app-label">Windscribe</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/vpns/Tunnelbear.png" class="app-icon" alt="TunnelBear">
+                    <input type="checkbox" id="TunnelBear.TunnelBear" class="app-checkbox">
+                    <label for="TunnelBear.TunnelBear" class="app-label">TunnelBear</label>
+                </div>
+            </div>
+        </div>
+
+        <link href="https://cdn.jsdelivr.net/npm/material-icons@1.13.14/iconfont/material-icons.min.css" rel="stylesheet">
+
+        <div class="footer">
+            <button class="btn btn-secondary style">
+                <span class="material-icons" style="font-size:18px;">close</span>
+                Exit
+            </button>
+            <button class="btn btn-primary ">
+                <span class="material-icons" style="font-size:18px;">download</span>
+                Install Selected
+            </button>
+            <button class="btn btn-secondary style" id="progress">
+                <span class="material-icons" style="font-size:18px;">sync</span>
+                Progress
+            </button>
+            <button class="btn btn-secondary style" id="github-btn">
+                <span class="material-icons" style="font-size:18px;">code</span>
+                GitHub
+            </button>
+            <script>
+                document.getElementById('github-btn').addEventListener('click', function() {
+                    if (window.electronAPI && window.electronAPI.openExternal) {
+                        window.electronAPI.openExternal('https://github.com/Techflux0/Package_Installer_win');
+                    } else {
+                        window.open('https://github.com/Techflux0/Package_Installer_win', '_blank');
+                    }
+                });
+            </script>
+            <button class="btn btn-secondary style" onclick="window.open('', '_blank')">
+                <span class="material-icons" style="font-size:18px;">help_outline</span>
+                Help
+            </button>
+        </div>
 
         <div id="status"></div>
     </div>

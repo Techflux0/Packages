@@ -24,8 +24,11 @@ const apps = {
         { id: 'Microsoft.VisualStudio', name: 'Visual Studio' },
         { id: 'Google.AndroidStudio', name: 'Android Studio' },
         { id: 'JetBrains.PyCharm', name: 'PyCharm' },
+        { id: 'JetBrains.CLion', name: 'CLion' },
         { id: 'JetBrains.IntelliJIDEA', name: 'IntelliJ IDEA' },
         { id: 'JetBrains.Rider', name: 'Rider' },
+        { id: 'RubyInstallerTeam.Ruby.3.1', name: 'RubyMine' },
+        { id: 'JetBrains.RubyMine', name: 'RubyMine' },
         { id: 'JetBrains.WebStorm', name: 'WebStorm' },
         { id: 'Git.Git', name: 'Git' },
         { id: 'Docker.DockerDesktop', name: 'Docker Desktop' },
@@ -82,6 +85,17 @@ const apps = {
         { id: 'Bandisoft.Bandizip', name: 'Bandizip' },
         { id: 'Corel.WinZip', name: 'WinZip' },
         { id: 'derceg.Explorer++', name: 'Explorer++' }
+    ],
+    Vpn: [
+        { id: 'ProtonVPN.ProtonVPN', name: 'ProtonVPN' },
+        { id: 'Windscribe.Windscribe', name: 'Windscribe' },
+        { id: 'TunnelBear.TunnelBear', name: 'TunnelBear' },
+        { id: 'HotspotShield.HotspotShield', name: 'Hotspot Shield' },
+        { id: 'NordSecurity.NordVPN', name: 'NordVPN' },
+        { id: 'ExpressVPN.ExpressVPN', name: 'ExpressVPN' },
+        { id: 'Surfshark.SurfsharkVPN', name: 'Surfshark VPN' },
+        { id: 'CyberGhost.CyberGhostVPN', name: 'CyberGhost VPN' },
+        { id: 'Famatech.RadminVPN', name: 'Famatech Radmin VPN' }
     ]
 };
 
