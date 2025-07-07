@@ -42,6 +42,7 @@ const apps = {
         { id: 'SublimeHQ.SublimeText.4', name: 'Sublime Text' },
         { id: 'Notepad++.Notepad++', name: 'Notepad++' },
         { id: 'Microsoft.WindowsTerminal', name: 'Windows Terminal' },
+        { id: 'Warp.Warp', name: 'Warp' }
     ],
     media: [
         { id: 'VideoLAN.VLC', name: 'VLC Media Player' },
@@ -70,14 +71,12 @@ const apps = {
         { id: 'Microsoft.Teams.Free', name: 'Microsoft Teams' },
         { id: 'Microsoft.Skype', name: 'Skype' }
     ],
-
     Disk: [
         { id: 'WinDirStat.WinDirStat', name: 'WinDirStat'},
         { id: 'Rufus.Rufus', name: 'Rufus' },
         { id: 'CrystalDewWorld.CrystalDiskInfo', name: 'CrystalDiskInfo' },
         { id: 'Balena.Etcher', name: 'Balena Etcher' }
     ],
-
     files: [
         { id: '7zip.7zip', name: '7-Zip' },
         { id: 'RARLab.WinRAR', name: 'WinRAR' },
@@ -99,19 +98,20 @@ const apps = {
     ]
 };
 
-
 // Installation states
 const INSTALL_STATES = {
-  WAITING: 'waiting',
-  INSTALLING: 'installing',
-  FINISHED: 'finished',
-  SKIPPED: 'skipped',
-  ERROR: 'error'
+    WAITING: 'waiting',
+    INSTALLING: 'installing',
+    FINISHED: 'finished',
+    SKIPPED: 'skipped',
+    ERROR: 'error'
 };
 
 let installationProgress = {};
 let totalAppsToInstall = 0;
 let installedCount = 0;
+let isInstalling = false;
+let installButton = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     const progressBtn = document.getElementById('progress');
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressLog = document.getElementById('progressLog');
     const closeModal = document.querySelector('.close-modal');
     const clearLogBtn = document.createElement('button');
-    
+    installButton = document.querySelector('.btn-primary');
 
     clearLogBtn.textContent = 'Clear Log';
     clearLogBtn.className = 'btn btn-secondary1';
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelector('.btn-secondary').addEventListener('click', exitApp);
-    document.querySelector('.btn-primary').addEventListener('click', installSelected);
+    installButton.addEventListener('click', installSelected);
     
     document.querySelectorAll('.select-all').forEach(button => {
         button.addEventListener('click', function() {
@@ -185,19 +185,19 @@ function updateProgressLog(message, state = null) {
         
         switch(state) {
             case INSTALL_STATES.WAITING:
-                icon.textContent = '';
+                icon.innerHTML = '➤ ';
                 break;
             case INSTALL_STATES.INSTALLING:
-                icon.textContent = '';
+                icon.innerHTML = '➤ ';
                 break;
             case INSTALL_STATES.FINISHED:
-                icon.textContent = '';
+                icon.innerHTML = '➤ ✔️';
                 break;
             case INSTALL_STATES.SKIPPED:
-                icon.textContent = '';
+                icon.innerHTML = '➤ ';
                 break;
             case INSTALL_STATES.ERROR:
-                icon.textContent = '';
+                icon.innerHTML = '➤ ';
                 break;
         }
         
@@ -212,7 +212,29 @@ function updateProgressLog(message, state = null) {
     }
 }
 
+function updateInstallButtonState(isInstalling) {
+    if (!installButton) return;
+    
+    const iconSpan = installButton.querySelector('.material-icons');
+    if (isInstalling) {
+        installButton.disabled = true;
+        iconSpan.textContent = 'sync';
+        iconSpan.style.animation = 'spin 1s linear infinite';
+        installButton.querySelector('.button-text').textContent = 'Installing...';
+    } else {
+        installButton.disabled = false;
+        iconSpan.textContent = 'download';
+        iconSpan.style.animation = '';
+        installButton.querySelector('.button-text').textContent = 'Install Selected';
+    }
+}
+
 function installSelected() {
+    if (isInstalling) {
+        updateProgressLog('Installation already in progress. Please wait.', INSTALL_STATES.ERROR);
+        return;
+    }
+    
     const checkboxes = document.querySelectorAll('.app-checkbox:checked');
     if (checkboxes.length === 0) {
         updateStatus('Please select at least one app to install.');
@@ -223,7 +245,9 @@ function installSelected() {
     totalAppsToInstall = appIds.length;
     installedCount = 0;
     installationProgress = {};
+    isInstalling = true;
     
+    updateInstallButtonState(true);
     updateProgressLog(`Starting installation of ${totalAppsToInstall} apps...`);
     installApps(appIds);
 }
@@ -235,6 +259,8 @@ function installApps(appIds) {
         if (currentIndex >= appIds.length) {
             updateProgressLog('All installations completed!', INSTALL_STATES.FINISHED);
             updateStatus('All installations completed!');
+            isInstalling = false;
+            updateInstallButtonState(false);
             return;
         }
         
@@ -304,8 +330,10 @@ function findAppName(appId) {
 
 function updateStatus(message, isError = false) {
     const statusElement = document.getElementById('status');
-    statusElement.textContent = message;
-    statusElement.style.color = isError ? '#ff3b30' : '#86868b';
+    if (statusElement) {
+        statusElement.textContent = message;
+        statusElement.style.color = isError ? '#ff3b30' : '#86868b';
+    }
 }
 
 function exitApp() {

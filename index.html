@@ -129,7 +129,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: var(--bg-color);
+    background-color: #f5f5f7;
     padding: 15px 20px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
     z-index: 100;
@@ -296,6 +296,22 @@
 .style{
     background-color:#0071e3;
     color: white;
+}
+
+.style:hover{
+    background-color: #0062c3;
+    transform: translateY(-1px);
+}
+
+/* Spin animation for the install icon */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.install-icon.spinning {
+    animation: spin 1s linear infinite;
+    display: inline-block; /* Needed for transform to work */
 }
     </style>
 </head>
@@ -472,6 +488,11 @@
                     <img src="assets/devtools/terminal.png" class="app-icon" alt="Windows Terminal">
                     <input type="checkbox" id="Microsoft.WindowsTerminal" class="app-checkbox">
                     <label for="Microsoft.WindowsTerminal" class="app-label">Windows Terminal</label>
+                </div>
+                <div class="app-item">
+                    <img src="assets/devtools/warp.png" class="app-icon" alt="Warp">
+                    <input type="checkbox" id="Warp.Warp" class="app-checkbox">
+                    <label for="Warp.Warp" class="app-label">Warp</label>
                 </div>
                 <div class="app-item">
                     <img src="assets/devtools/docker.svg" class="app-icon" alt="Docker Desktop">
@@ -796,10 +817,10 @@
                 <span class="material-icons" style="font-size:18px;">close</span>
                 Exit
             </button>
-            <button class="btn btn-primary ">
-                <span class="material-icons" style="font-size:18px;">download</span>
-                Install Selected
-            </button>
+<button class="btn btn-primary" id="installButton">
+    <span class="material-icons install-icon" style="font-size:18px;">download</span>
+    <span class="button-text">Install Selected</span>
+</button>
             <button class="btn btn-secondary style" id="progress">
                 <span class="material-icons" style="font-size:18px;">sync</span>
                 Progress
@@ -808,15 +829,6 @@
                 <span class="material-icons" style="font-size:18px;">code</span>
                 GitHub
             </button>
-            <script>
-                document.getElementById('github-btn').addEventListener('click', function() {
-                    if (window.electronAPI && window.electronAPI.openExternal) {
-                        window.electronAPI.openExternal('https://github.com/Techflux0/Package_Installer_win');
-                    } else {
-                        window.open('https://github.com/Techflux0/Package_Installer_win', '_blank');
-                    }
-                });
-            </script>
             <button class="btn btn-secondary style" onclick="window.open('', '_blank')">
                 <span class="material-icons" style="font-size:18px;">help_outline</span>
                 Help
