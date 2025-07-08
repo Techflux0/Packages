@@ -1,843 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>App Installer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-        <style>
-        :root {
-            --bg-color: #f5f5f7;
-            --card-color: #ffffff;
-            --primary-color: #0071e3;
-            --text-color: #1d1d1f;
-            --border-color: #d2d2d7;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>App Installer - TechFlux</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #0f172a;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            -webkit-font-smoothing: antialiased;
-        }
+    header {
+      background: #1e293b;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #38bdf8;
+    }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+    .container {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #1e293b;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
 
-        .title {
-            font-size: 24px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .description {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
 
-        .title img {
-            height: 32px;
-        }
+    .app-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
 
-        .card {
-            background-color: var(--card-color);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+    .app-list li {
+      margin: 0.5rem 0;
+    }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+    label {
+      cursor: pointer;
+    }
 
-        .category-title {
-            font-size: 18px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #38bdf8;
+      color: #0f172a;
+      border: none;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
 
-        .category-title img {
-            height: 20px;
-        }
-
-        .select-all {
-            color: var(--primary-color);
-            cursor: pointer;
-            font-size: 14px;
-            user-select: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .select-all:hover {
-            text-decoration: underline;
-        }
-
-        .app-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 12px;
-        }
-
-        .app-item {
-            display: flex;
-            align-items: center;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .app-item:hover {
-            background-color: rgba(0, 113, 227, 0.05);
-        }
-
-        .app-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 12px;
-            object-fit: contain;
-        }
-
-        .app-checkbox {
-            margin-right: 10px;
-            accent-color: var(--primary-color);
-            width: 16px;
-            height: 16px;
-        }
-
-        .app-label {
-            font-size: 14px;
-            flex-grow: 1;
-        }
-
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #f5f5f7;
-    padding: 15px 20px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-}
-
-        .btn {
-            padding: 7px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 10px 0;
-            margin-left: 10px;
-            flex-direction: row;
-        }
-
-        .footer .btn {
-    margin: 0 10px;
-}
-
-        .btn img {
-            height: 16px;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #0062c3;
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-        }
-
-        .btn-secondary1:hover {
-            background-color: hwb(240 96% 2% / 0.932);
-        }
-
-        #status {
-            margin-top: 15px;
-            font-size: 13px;
-            color: #86868b;
-            min-height: 20px;
-            padding: 10px;
-            border-radius: 6px;
-            background-color: rgba(0, 113, 227, 0.05);
-        }
-
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-        /* Modern Modal Styles */
-/* Debug Console Style Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modal-content {
-  background-color: #1e1e1e;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
-}
-
-.modal-header {
-  background-color: #252526;
-  padding: 8px 12px;
-  margin: 0;
-  border-bottom: 1px solid #333;
-}
-
-.modal-header h3 {
-  color: #d4d4d4;
-  font-size: 13px;
-  font-family: 'Consolas', 'Courier New', monospace;
-}
-
-
-.progress-container {
-  height: 4px;
-  margin: 0;
-  border-radius: 0;
-  background-color: #252526;
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: #0e639c;
-  border-radius: 0;
-}
-
-#progressLog {
-  background-color: #1e1e1e;
-  color: #d4d4d4;
-  font-family: 'Consolas', 'Courier New', monospace;
-  font-size: 12px;
-  line-height: 1.2;
-  padding: 4px;
-  margin: 0;
-  border: none;
-  white-space: pre;
-  overflow-y: auto;
-  height: calc(100vh - 45px);
-}
-
-.log-entry {
-  margin: 0;
-  padding: 0;
-  border-left: none;
-  display: block;
-}
-
-.log-entry + .log-entry {
-  margin-top: 0;
-}
-
-/* Syntax coloring for different states */
-.log-entry.waiting { color: #b5cea8; }    /* Light green */
-.log-entry.installing { color: #569cd6; } /* Blue */
-.log-entry.finished { color: #6a9955; }   /* Green */
-.log-entry.skipped { color: #858585; }    /* Gray */
-.log-entry.error { color: #f48771; }      /* Red */
-
-.style{
-    background-color:#0071e3;
-    color: white;
-}
-
-.style:hover{
-    background-color: #0062c3;
-    transform: translateY(-1px);
-}
-
-/* Spin animation for the install icon */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.install-icon.spinning {
-    animation: spin 1s linear infinite;
-    display: inline-block; /* Needed for transform to work */
-}
-    </style>
+    .btn:hover {
+      background: #0ea5e9;
+    }
+  </style>
 </head>
-<!-- Progress Modal -->
-<div id="progressModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header" style="display: flex; align-items: center; justify-content: space-between;">
-      <h3 style="margin: 0;">Installation Progress</h3>
-      <div style="display: flex; flex-direction: row; gap: 5px;">
-        <button class="close-modal btn btn-secondary1">Go Back</button>
-      </div>
-    </div>
-    <div class="progress-container">
-      <div id="progressBar" class="progress-bar"></div>
-    </div>
-    <div class="modal-body">
-      <pre id="progressLog"></pre>
-    </div>
-  </div>
-</div>
-
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="title" style="position:fixed; top:0; width:100vw; background:#f5f5f7; text-align:center; z-index:100;  font-size:24px; font-weight:600;">
-                Apps Installer V1.0.1
-            </div>
-        </div>
 
-        <!-- Browsers -->
-        <div class="card">
-            <div class="card-header">
-                <div class="category-title">Web Browsers</div>
-                <div class="select-all" data-category="browsers">Select All</div>
-            </div>
-            <div class="app-list" id="browsers-apps">
-                <div class="app-item">
-                    <img src="assets/icons/firefox.png" class="app-icon" alt="Firefox">
-                    <input type="checkbox" id="Mozilla.Firefox" class="app-checkbox">
-                    <label for="Mozilla.Firefox" class="app-label">Firefox</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/icons/chrome.png" class="app-icon" alt="Chrome">
-                    <input type="checkbox" id="Google.Chrome.EXE" class="app-checkbox">
-                    <label for="Google.Chrome.EXE" class="app-label">Chrome</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/icons/microsoft.png" class="app-icon" alt="Edge">
-                    <input type="checkbox" id="Microsoft.Edge" class="app-checkbox">
-                    <label for="Microsoft.Edge" class="app-label">Edge</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/icons/brave.png" class="app-icon" alt="Brave">
-                    <input type="checkbox" id="Brave.Brave" class="app-checkbox">
-                    <label for="Brave.Brave" class="app-label">Brave</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/icons/opera.png" class="app-icon" alt="Opera">
-                    <input type="checkbox" id="Opera.Opera" class="app-checkbox">
-                    <label for="Opera.Opera" class="app-label">Opera</label>
-                </div>
+  <header>
+    <h1>🔥 TechFlux App Installer</h1>
+  </header>
 
-                <div class="app-item">
-                    <img src="assets/icons/vivaldi.png" class="app-icon" alt="Vivaldi">
-                    <input type="checkbox" id="Vivaldi.Vivaldi" class="app-checkbox">
-                    <label for="Vivaldi.Vivaldi" class="app-label">Vivaldi</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/icons/tor.png" class="app-icon" alt="Tor Browser">
-                    <input type="checkbox" id="TorProject.TorBrowser" class="app-checkbox">
-                    <label for="TorProject.TorBrowser" class="app-label">Tor Browser</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/icons/duckduckgo.png" class="app-icon" alt="DuckDuckGo Browser">
-                    <input type="checkbox" id="DuckDuckGo.DuckDuckGo" class="app-checkbox">
-                    <label for="DuckDuckGo.DuckDuckGo" class="app-label">DuckDuckGo Browser</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/icons/yandex.png" class="app-icon" alt="Yandex Browser">
-                    <input type="checkbox" id="Yandex.Browser" class="app-checkbox">
-                    <label for="Yandex.Browser" class="app-label">Yandex Browser</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/icons/huawei.png" class="app-icon" alt="Huawei Browser">
-                    <input type="checkbox" id="Huawei.HuaweiBrowser" class="app-checkbox">
-                    <label for="Huawei.HuaweiBrowser" class="app-label">Huawei Browser</label>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <p class="description">
+      Select the apps you want to install. Once you're ready, hit the button below and the installer will handle the rest — including removing old versions!
+    </p>
 
-        <!-- Development Tools -->
-        <div class="card">
-            <div class="card-header">
-                <div class="category-title">Development Tools</div>
-                <div class="select-all" data-category="dev">Select All</div>
-            </div>
-            <div class="app-list" id="dev-apps">
-                <div class="app-item">
-                    <img src="assets/devtools/atom.png" class="app-icon" alt="Atom">
-                    <input type="checkbox" id="GitHub.Atom" class="app-checkbox">
-                    <label for="GitHub.Atom" class="app-label">Atom</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/anaconda.svg" class="app-icon" alt="Anaconda">
-                    <input type="checkbox" id="Anaconda.Anaconda3" class="app-checkbox">
-                    <label for="Anaconda.Anaconda3" class="app-label">Anaconda</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/code.svg" class="app-icon" alt="VS Code">
-                    <input type="checkbox" id="Microsoft.VisualStudioCode" class="app-checkbox">
-                    <label for="Microsoft.VisualStudioCode" class="app-label">VS Code</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/nodejs.svg" class="app-icon" alt="Node.js">
-                    <input type="checkbox" id="OpenJS.NodeJS" class="app-checkbox">
-                    <label for="OpenJS.NodeJS" class="app-label">Node.js</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/python.svg" class="app-icon" alt="Python">
-                    <input type="checkbox" id="9PNRBTZXMB4Z" class="app-checkbox">
-                    <label for="9PNRBTZXMB4Z" class="app-label">Python</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/vs.svg" class="app-icon" alt="Rust">
-                    <input type="checkbox" id="Microsoft.VisualStudio" class="app-checkbox">
-                    <label for="Microsoft.VisualStudio" class="app-label">Visual Studio</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/androidstudio.svg" class="app-icon" alt="Android Studio">
-                    <input type="checkbox" id="Google.AndroidStudio" class="app-checkbox">
-                    <label for="Google.AndroidStudio" class="app-label">Android Studio</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/IntelliJIDEA.svg" class="app-icon" alt="IntelliJ IDEA">
-                    <input type="checkbox" id="JetBrains.IntelliJIDEA.Community" class="app-checkbox">
-                    <label for="JetBrains.IntelliJIDEA.Community" class="app-label">IntelliJ IDEA</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/pycharm.svg" class="app-icon" alt="PyCharm">
-                    <input type="checkbox" id="JetBrains.PyCharm" class="app-checkbox">
-                    <label for="JetBrains.PyCharm" class="app-label">PyCharm</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/clion.svg" class="app-icon" alt="CLion">
-                    <input type="checkbox" id="JetBrains.CLion" class="app-checkbox">
-                    <label for="JetBrains.CLion" class="app-label">CLion</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/webstorm.svg" class="app-icon" alt="WebStorm">
-                    <input type="checkbox" id="JetBrains.WebStorm" class="app-checkbox">
-                    <label for="JetBrains.WebStorm" class="app-label">WebStorm</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/Rider.svg" class="app-icon" alt="Rider">
-                    <input type="checkbox" id="JetBrains.Rider" class="app-checkbox">
-                    <label for="JetBrains.Rider" class="app-label">Rider</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/ruby.svg" class="app-icon" alt="RubyMine">
-                    <input type="checkbox" id="JetBrains.RubyMine" class="app-checkbox">
-                    <label for="JetBrains.RubyMine" class="app-label">RubyMine</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/rubies.svg" class="app-icon" alt="Ruby">
-                    <input type="checkbox" id="RubyInstallerTeam.Ruby.3.1" class="app-checkbox">
-                    <label for="RubyInstallerTeam.Ruby.3.1" class="app-label">RubyMine</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/git.svg" class="app-icon" alt="Git">
-                    <input type="checkbox" id="Git.Git" class="app-checkbox">
-                    <label for="Git.Git" class="app-label">Git</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/terminal.png" class="app-icon" alt="Windows Terminal">
-                    <input type="checkbox" id="Microsoft.WindowsTerminal" class="app-checkbox">
-                    <label for="Microsoft.WindowsTerminal" class="app-label">Windows Terminal</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/warp.png" class="app-icon" alt="Warp">
-                    <input type="checkbox" id="Warp.Warp" class="app-checkbox">
-                    <label for="Warp.Warp" class="app-label">Warp</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/docker.svg" class="app-icon" alt="Docker Desktop">
-                    <input type="checkbox" id="Docker.DockerDesktop" class="app-checkbox">
-                    <label for="Docker.DockerDesktop" class="app-label">Docker Desktop</label>  
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/postman.svg" class="app-icon" alt="Postman">
-                    <input type="checkbox" id="Postman.Postman" class="app-checkbox">
-                    <label for="Postman.Postman" class="app-label">Postman</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/mongo.svg" class="app-icon" alt="MongoDB Compass">
-                    <input type="checkbox" id="MongoDB.Compass.Full" class="app-checkbox">
-                    <label for="MongoDB.Compass.Full" class="app-label">MongoDB Compass</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/mysql.svg" class="app-icon" alt="MySQL Workbench">
-                    <input type="checkbox" id="Oracle.MySQLWorkbench" class="app-checkbox">
-                    <label for="Oracle.MySQLWorkbench" class="app-label">MySQL Workbench</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/powershell.svg" class="app-icon" alt="PowerShell">
-                    <input type="checkbox" id="Microsoft.PowerShell" class="app-checkbox">
-                    <label for="Microsoft.PowerShell" class="app-label">PowerShell</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/github.svg" class="app-icon" alt="GitHub Desktop">
-                    <input type="checkbox" id="GitHub.GitHubDesktop" class="app-checkbox">
-                    <label for="GitHub.GitHubDesktop" class="app-label">GitHub Desktop</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/devtools/java.svg" class="app-icon" alt="Java Runtime Environment">
-                    <input type="checkbox" id="javaOracle.JavaRuntimeEnvironment" class="app-checkbox">
-                    <label for="javaOracle.JavaRuntimeEnvironment" class="app-label">Java Runtime</label>
-                </div>
-                <!-- SublimeHQ.SublimeText.4 -->
-                <div class="app-item">
-                    <img src="assets/devtools/sublime.png" class="app-icon" alt="Sublime Text">
-                    <input type="checkbox" id="SublimeHQ.SublimeText.4" class="app-checkbox">
-                    <label for="SublimeHQ.SublimeText.4" class="app-label">Sublime Text</label>
-                </div>
-                <!-- notepad++ -->
-                <div class="app-item">
-                    <img src="assets/devtools/np++.png" class="app-icon" alt="Notepad++">
-                    <input type="checkbox" id="Notepad++.Notepad++" class="app-checkbox">
-                    <label for="Notepad++.Notepad++" class="app-label">Notepad++</label>
-                </div>
-                <!-- xammp      -->
-                <div class="app-item">
-                    <img src="assets/devtools/xampp.ico" class="app-icon" alt="XAMPP">
-                    <input type="checkbox" id="ApacheFriends.Xampp.8.2" class="app-checkbox">
-                    <label for="ApacheFriends.Xampp.8.2" class="app-label">XAMPP</label>
-                </div>
-            </div>
-        </div>
+    <ul class="app-list">
+      <li><label><input type="checkbox" value="Chrome"> Chrome Browser</label></li>
+      <li><label><input type="checkbox" value="VSCode"> Visual Studio Code</label></li>
+      <li><label><input type="checkbox" value="Discord"> Discord</label></li>
+      <li><label><input type="checkbox" value="Spotify"> Spotify</label></li>
+      <li><label><input type="checkbox" value="Telegram"> Telegram</label></li>
+    </ul>
 
-        <!--Media-->
-        <div class="card">
-            <div class="card-header">
-                <div class="category-title">Media</div>
-                <div class="select-all" data-category="media">Select All</div>
-            </div>
-            <div class="app-list" id="media-apps">
-                <div class="app-item">
-                    <img src="assets/media/vlc.png" class="app-icon" alt="VLC Media Player">
-                    <input type="checkbox" id="VLC.VLCmediaPlayer" class="app-checkbox">
-                    <label for="VLC.VLCmediaPlayer" class="app-label">VLC</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/spotify.png" class="app-icon" alt="Spotify">
-                    <input type="checkbox" id="Spotify.Spotify" class="app-checkbox">
-                    <label for="Spotify.Spotify" class="app-label">Spotify</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/spotifly.png" class="app-icon" alt="SpotiFlyer">
-                    <input type="checkbox" id="Shabinder.SpotiFlyer" class="app-checkbox">
-                    <label for="Shabinder.SpotiFlyer" class="app-label">SpotiFlyer</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/iTUNES.png" class="app-icon" alt="iTunes">
-                    <input type="checkbox" id="Apple.iTunes" class="app-checkbox">
-                    <label for="Apple.iTunes" class="app-label">iTunes</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/obs.png" class="app-icon" alt="OBS Studio">
-                    <input type="checkbox" id="OBSProject.OBSStudio" class="app-checkbox">
-                    <label for="OBSProject.OBSStudio" class="app-label">OBS Studio</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/shotcut.png" class="app-icon" alt="Shotcut">
-                    <input type="checkbox" id="Shotcut.Shotcut" class="app-checkbox">
-                    <label for="Shotcut.Shotcut" class="app-label">Shotcut</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/gimp.svg" class="app-icon" alt="GIMP">
-                    <input type="checkbox" id="GIMP.GIMP.3" class="app-checkbox">
-                    <label for="GIMP.GIMP.3" class="app-label">GIMP</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/inkscape.png" class="app-icon" alt="Inkscape">
-                    <input type="checkbox" id="Inkscape.Inkscape" class="app-checkbox">
-                    <label for="Inkscape.Inkscape" class="app-label">Inkscape</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/blender.svg" class="app-icon" alt="Blender">
-                    <input type="checkbox" id="BlenderFoundation.Blender" class="app-checkbox">
-                    <label for="BlenderFoundation.Blender" class="app-label">Blender</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/photoshop.png" class="app-icon" alt="Adobe Photoshop">
-                    <input type="checkbox" id="XPFD4T9N395QN6" class="app-checkbox">
-                    <label for="XPFD4T9N395QN6" class="app-label">Adobe Photoshop</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/media/zoom.png" class="app-icon" alt="Zoom">
-                    <input type="checkbox" id="zoom.Zoom" class="app-checkbox">
-                    <label for="zoom.Zoom" class="app-label">Zoom</label>
-                </div>
-            </div>
-        </div>
-        <!-- Social Media -->
-        <div class="card">
-            <div class="card-header">
-                <div class="category-title">Social Media</div>
-                <div class="select-all" data-category="social">Select All</div>
-            </div>
-            <div class="app-list" id="social-apps">
-                <div class="app-item">
-                    <img src="assets/social/whatsapp.png" class="app-icon" alt="WhatsApp">
-                    <input type="checkbox" id="9NKSQGP7F2NH" class="app-checkbox">
-                    <label for="9NKSQGP7F2NH" class="app-label">WhatsApp</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/whatsapp.png" class="app-icon" alt="WhatsApp Beta">
-                    <input type="checkbox" id="9NBDXK71NK08" class="app-checkbox">
-                    <label for="9NBDXK71NK08" class="app-label">WhatsApp Beta</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/instagram.png" class="app-icon" alt="Instagram">
-                    <input type="checkbox" id="9NBLGGH5L9XT" class="app-checkbox">
-                    <label for="9NBLGGH5L9XT" class="app-label">Instagram</label>
-                </div>
-                <!-- threads -->
-                <div class="app-item">
-                    <img src="assets/svgs/threads.svg" class="app-icon" alt="Threads">
-                    <input type="checkbox" id="9MXBP1FB84CQ" class="app-checkbox">
-                    <label for="9MXBP1FB84CQ" class="app-label">Threads</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/telegram.png" class="app-icon" alt="Telegram">
-                    <input type="checkbox" id="Telegram.TelegramDesktop" class="app-checkbox">
-                    <label for="Telegram.TelegramDesktop" class="app-label">Telegram</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/telegram.png" class="app-icon" alt="Unigram">
-                    <input type="checkbox" id="Telegram.Unigram" class="app-checkbox">
-                    <label for="Telegram.Unigram" class="app-label">Unigram</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/twitter.png" class="app-icon" alt="Twitter">
-                    <input type="checkbox" id="9WZDNCRFJ140" class="app-checkbox">
-                    <label for="9WZDNCRFJ140" class="app-label">Twitter</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/facebook.svg" class="app-icon" alt="Facebook">
-                    <input type="checkbox" id="9WZDNCRFJ2WL" class="app-checkbox">
-                    <label for="9WZDNCRFJ2WL" class="app-label">Facebook</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/tiktok.png" class="app-icon" alt="TikTok">
-                    <input type="checkbox" id="9NH2GPH4JZS4" class="app-checkbox">
-                    <label for="9NH2GPH4JZS4" class="app-label">TikTok</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/discord.png" class="app-icon" alt="Discord">
-                    <input type="checkbox" id="Discord.Discord" class="app-checkbox">
-                    <label for="Discord.Discord" class="app-label">Discord</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/slack.svg" class="app-icon" alt="Slack">
-                    <input type="checkbox" id="SlackTechnologies.Slack" class="app-checkbox">
-                    <label for="SlackTechnologies.Slack" class="app-label">Slack</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/teams.png" class="app-icon" alt="Microsoft Teams">
-                    <input type="checkbox" id="Microsoft.Teams" class="app-checkbox">
-                    <label for="Microsoft.Teams" class="app-label">Microsoft Teams</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/social/skype.png" class="app-icon" alt="Skype">
-                    <input type="checkbox" id="Skype.Skype" class="app-checkbox">
-                    <label for="Skype.Skype" class="app-label">Skype</label>
-                </div>
-            </div>
-        </div>
+    <button class="btn" onclick="startInstall()">Start Installation</button>
+  </div>
 
-        <!-- Utilities -->
-        <div class="card">
-            <div class="card-header">
-                <div class="category-title">Disk Utilities</div>
-                <div class="select-all" data-category="disk">Select All</div>
-            </div>
-            <div class="app-list" id="disk-apps">
-                <div class="app-item">
-                    <img src="assets/disk/wind.png" class="app-icon" alt="WinDirStat">
-                    <input type="checkbox" id="WinDirStat.WinDirStat" class="app-checkbox">
-                    <label for="WinDirStat.WinDirStat" class="app-label">WinDirStat</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/disk/rufus.png" class="app-icon" alt="Rufus">
-                    <input type="checkbox" id="Rufus.Rufus" class="app-checkbox">
-                    <label for="Rufus.Rufus" class="app-label">Rufus</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/disk/balena.png" class="app-icon" alt="Balena Etcher">
-                    <input type="checkbox" id="Balena.Etcher" class="app-checkbox">
-                    <label for="Balena.Etcher" class="app-label">Balena Etcher</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/disk/CrystalDiskInfo.png" class="app-icon" alt="CrystalDiskInfo">
-                    <input type="checkbox" id="CrystalDewWorld.CrystalDiskInfo" class="app-checkbox">
-                    <label for="CrystalDewWorld.CrystalDiskInfo" class="app-label">CrystalDiskInfo</label>
-                </div>
-            </div>
-        </div>
+  <script>
+    function startInstall() {
+      const selected = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
+        .map(cb => cb.value);
+      if (selected.length === 0) {
+        alert('Please select at least one app to install.');
+        return;
+      }
+      alert('Installing: ' + selected.join(', ') + '\nPlease wait...');
+      // This is just frontend – hook it up to real backend or script
+    }
+  </script>
 
-        <!-- files -->
-        <div class="card">
-            <div class="card-header">
-                <div class="category-title">File Management</div>
-                <div class="select-all" data-category="files">Select All</div>
-            </div>
-            <div class="app-list" id="files-apps">
-                <div class="app-item">
-                    <img src="assets/files/7z.png" class="app-icon" alt="7-Zip">
-                    <input type="checkbox" id="7zip.7zip" class="app-checkbox">
-                    <label for="7zip.7zip" class="app-label">7-Zip</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/files/winrar.png" class="app-icon" alt="WinRAR">
-                    <input type="checkbox" id="RARLab.WinRAR" class="app-checkbox">
-                    <label for="RARLab.WinRAR" class="app-label">WinRAR</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/files/peazip.jpeg" class="app-icon" alt="PeaZip">
-                    <input type="checkbox" id="Giorgiotani.Peazip" class="app-checkbox">
-                    <label for="Giorgiotani.Peazip" class="app-label">PeaZip</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/files/explorer.png" class="app-icon" alt="Explorer++">
-                    <input type="checkbox" id="derceg.Explorer++" class="app-checkbox">
-                    <label for="derceg.Explorer++" class="app-label">Explorer++</label>
-                </div> 
-                <div class="app-item">
-                    <img src="assets/files/Bandizip.png" class="app-icon" alt="Bandizip">
-                    <input type="checkbox" id="Bandisoft.Bandizip" class="app-checkbox">
-                    <label for="Bandisoft.Bandizip" class="app-label">Bandizip</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/files/winzip.png" class="app-icon" alt="WinZip">
-                    <input type="checkbox" id="Corel.WinZip" class="app-checkbox">
-                    <label for="Corel.WinZip" class="app-label">WinZip</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- vpns -->
-        <div class="card">
-            <div class="card-header">
-                <div class="category-title">VPNs</div>
-                <div class="select-all" data-category="vpns">Select All</div>
-            </div>
-            <div class="app-list" id="vpns-apps">
-                <div class="app-item">
-                    <img src="assets/vpns/express.svg" class="app-icon" alt="ExpressVPN">
-                    <input type="checkbox" id="ExpressVPN.ExpressVPN" class="app-checkbox">
-                    <label for="ExpressVPN.ExpressVPN" class="app-label">ExpressVPN</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/vpns/proton.svg" class="app-icon" alt="ProtonVPN">
-                    <input type="checkbox" id="ProtonVPN.ProtonVPN" class="app-checkbox">
-                    <label for="ProtonVPN.ProtonVPN" class="app-label">ProtonVPN</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/vpns/nordvpn.svg" class="app-icon" alt="NordVPN">
-                    <input type="checkbox" id="NordSecurity.NordVPN" class="app-checkbox">
-                    <label for="NordSecurity.NordVPN" class="app-label">NordVPN</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/vpns/surf.svg" class="app-icon" alt="Surfshark">
-                    <input type="checkbox" id="Surfshark.Surfshark" class="app-checkbox">
-                    <label for="Surfshark.Surfshark" class="app-label">Surfshark</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/vpns/cyber.png" class="app-icon" alt="CyberGhost">
-                    <input type="checkbox" id="CyberGhost.CyberGhost" class="app-checkbox">
-                    <label for="CyberGhost.CyberGhost" class="app-label">CyberGhost</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/vpns/radmin.png" class="app-icon" alt="Famatech Radmin VPN">
-                    <input type="checkbox" id="Famatech.RadminVPN" class="app-checkbox">
-                    <label for="Famatech.RadminVPN" class="app-label">Famatech Radmin VPN</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/vpns/wind.png" class="app-icon" alt="Windscribe">
-                    <input type="checkbox" id="Windscribe.Windscribe" class="app-checkbox">
-                    <label for="Windscribe.Windscribe" class="app-label">Windscribe</label>
-                </div>
-                <div class="app-item">
-                    <img src="assets/vpns/Tunnelbear.png" class="app-icon" alt="TunnelBear">
-                    <input type="checkbox" id="TunnelBear.TunnelBear" class="app-checkbox">
-                    <label for="TunnelBear.TunnelBear" class="app-label">TunnelBear</label>
-                </div>
-            </div>
-        </div>
-
-        <link href="https://cdn.jsdelivr.net/npm/material-icons@1.13.14/iconfont/material-icons.min.css" rel="stylesheet">
-
-        <div class="footer">
-            <button class="btn btn-secondary style">
-                <span class="material-icons" style="font-size:18px;">close</span>
-                Exit
-            </button>
-<button class="btn btn-primary" id="installButton">
-    <span class="material-icons install-icon" style="font-size:18px;">download</span>
-    <span class="button-text">Install Selected</span>
-</button>
-            <button class="btn btn-secondary style" id="progress">
-                <span class="material-icons" style="font-size:18px;">sync</span>
-                Progress
-            </button>
-            <button class="btn btn-secondary style" id="github-btn">
-                <span class="material-icons" style="font-size:18px;">code</span>
-                GitHub
-            </button>
-            <button class="btn btn-secondary style" onclick="window.open('', '_blank')">
-                <span class="material-icons" style="font-size:18px;">help_outline</span>
-                Help
-            </button>
-        </div>
-
-        <div id="status"></div>
-    </div>
-
-    <script src="render.js"></script>
 </body>
 </html>
