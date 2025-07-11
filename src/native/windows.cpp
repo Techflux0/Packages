@@ -8,7 +8,7 @@ Napi::Boolean DisableResizeMaximize(const Napi::CallbackInfo& info) {
         Napi::TypeError::New(env, "Expected HWND pointer").ThrowAsJavaScriptException();
         return Napi::Boolean::New(env, false);
     }
-
+//load all
     HWND hwnd = (HWND)(uintptr_t)info[0].As<Napi::Number>().Int64Value();
 
     LONG style = GetWindowLong(hwnd, GWL_STYLE);
