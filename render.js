@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 const { ipcRenderer } = require('electron');
 
-// App data
+// App data HERE
 const apps = {
     browsers: [
         { id: 'Mozilla.Firefox', name: 'Firefox' },
